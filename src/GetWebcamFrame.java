@@ -1,4 +1,5 @@
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 import java.awt.Dimension;
@@ -6,8 +7,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class GetWebcamFrame  {
@@ -27,10 +30,10 @@ public class GetWebcamFrame  {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		VideoCapture cam = new VideoCapture(0);
+		/*VideoCapture cam = new VideoCapture(0);
 		cam.open(0);
 		Thread.sleep(1000);
-			while(cam.isOpened() || true){
+			while(cam.isOpened()){
 				Thread.sleep(1000/60);
 				frameCount++;
 				Mat regular = new Mat();
@@ -45,7 +48,28 @@ public class GetWebcamFrame  {
 				paint.setfcount(frameCount);
 			}
 			cam.release();
+		}*/
+		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg");
+		BufferedImage sampimg = ImageIO.read(sampf);
+		Mat sample = BufferedImagetoMat(sampimg);
+		
+		
+		while(true)
+		{
+			Thread.sleep(1000/60);
+			frameCount++;
+			Mat regular = new Mat();
+			Mat HSV = new Mat();
+			Mat filtered = new Mat();
+			regular = sample;
+			HSV = filter.convertToHSV(regular);
+			filtered = filter.filterHSV(HSV);
+			Image scaledImg = scaleImage(toBufferedImage(regular));
+			paint.queueImage(scaledImg, filter.findPts(filtered));
+			System.out.println("Frame "+frameCount);
+			paint.setfcount(frameCount);
 		}
+	}
 	
 	public static Image scaleImage(Image frame){	 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -68,4 +92,13 @@ public class GetWebcamFrame  {
         System.arraycopy(b, 0, targetPixels, 0, b.length);  
         return image;
     }
+	
+	public static Mat BufferedImagetoMat(BufferedImage buff)
+	{
+		byte[] sampimgpixels = ((DataBufferByte) buff.getRaster().getDataBuffer()).getData();
+		Mat sample = new Mat(buff.getHeight(),buff.getWidth(),CvType.CV_8UC3);
+		sample.put(0, 0, sampimgpixels);
+		
+		return sample;
+	}
 }
