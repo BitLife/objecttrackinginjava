@@ -1,2 +1,1 @@
-OBJECT THINGAMABOB ORANGE BALLZ
-install opencv in java to compile
+#Object Tracking using opencv in java
