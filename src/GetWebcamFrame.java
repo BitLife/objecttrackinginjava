@@ -18,26 +18,31 @@ public class GetWebcamFrame implements KeyListener{
 	private static final JFrame frame = new JFrame("CANHacks 2015");
 	private static boolean switchImage;
 	
-	public static void main(String[] args) throws InterruptedException, IOException
-	{	
+	public GetWebcamFrame(PaintImage paint) throws IOException{
 		ValueSlider run = new ValueSlider();
-		int frameCount = 0;
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		PaintImage paint = new PaintImage();
-		FilterImages filter = new FilterImages();
 		switchImage = false;
-		
-		
 		frame.setContentPane(paint);
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
 		frame.setLocationRelativeTo(null);
+		frame.addKeyListener(this);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	public static void main(String[] args) throws InterruptedException, IOException{
+		
+		FilterImages filter = new FilterImages();
+		PaintImage paint = new PaintImage();
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		int frameCount = 0;
+		new GetWebcamFrame(paint);
 		
 		VideoCapture cam = new VideoCapture(0);
 		cam.open(0);
 		Thread.sleep(1000);
 			while(cam.isOpened()){
+				System.out.println(switchImage);
 				Thread.sleep(1000/60);
 				frameCount++;
 				Mat regular = new Mat();
@@ -114,6 +119,7 @@ public class GetWebcamFrame implements KeyListener{
 		int key =  e.getKeyCode();
 		if(key == KeyEvent.VK_ENTER)
 			switchImage = !(switchImage);
+		System.out.println(switchImage);
 	}
 
 	public void keyTyped(KeyEvent e) {
