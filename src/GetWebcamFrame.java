@@ -5,17 +5,18 @@ import org.opencv.videoio.VideoCapture;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class GetWebcamFrame  {
+public class GetWebcamFrame implements KeyListener{
 	private static final JFrame frame = new JFrame("CANHacks 2015");
+	private static boolean switchImage;
 	
 	public static void main(String[] args) throws InterruptedException, IOException
 	{	
@@ -24,6 +25,8 @@ public class GetWebcamFrame  {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		PaintImage paint = new PaintImage();
 		FilterImages filter = new FilterImages();
+		switchImage = false;
+		
 		
 		frame.setContentPane(paint);
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
@@ -31,7 +34,7 @@ public class GetWebcamFrame  {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		/*VideoCapture cam = new VideoCapture(0);
+		VideoCapture cam = new VideoCapture(0);
 		cam.open(0);
 		Thread.sleep(1000);
 			while(cam.isOpened()){
@@ -44,13 +47,15 @@ public class GetWebcamFrame  {
 				HSV = filter.convertToHSV(regular);
 				filtered = filter.filterHSV(HSV);
 				Image scaledImg = scaleImage(toBufferedImage(filtered));
+				if(switchImage)
+					scaledImg = scaleImage(toBufferedImage(regular));
 				paint.queueImage(scaledImg, filter.findPts(filtered));
 				System.out.println("Frame "+frameCount);
 				paint.setfcount(frameCount);
 			}
 			cam.release();
-		}*/
-		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
+		}
+		/*File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
 		BufferedImage sampimg = ImageIO.read(sampf);
 		Mat sample = BufferedImagetoMat(sampimg);
 
@@ -69,7 +74,7 @@ public class GetWebcamFrame  {
 			System.out.println("Frame "+frameCount);
 			paint.setfcount(frameCount);
 		}
-	}
+	}*/
 	
 	public static Image scaleImage(Image frame){	 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -93,16 +98,24 @@ public class GetWebcamFrame  {
         return image;
     }
 	
-	public static Mat BufferedImagetoMat(BufferedImage buff)
+	/*public static Mat BufferedImagetoMat(BufferedImage buff)
 	{
 		byte[] sampimgpixels = ((DataBufferByte) buff.getRaster().getDataBuffer()).getData();
 		Mat sample = new Mat(buff.getHeight(),buff.getWidth(),CvType.CV_8UC3);
 		sample.put(0, 0, sampimgpixels);
 		
 		return sample;
+	}*/
+	
+	public void keyPressed(KeyEvent e) {
 	}
 
+	public void keyReleased(KeyEvent e) {
+		int key =  e.getKeyCode();
+		if(key == KeyEvent.VK_ENTER)
+			switchImage = !(switchImage);
+	}
 
-
-
+	public void keyTyped(KeyEvent e) {
+	}
 }

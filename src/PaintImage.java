@@ -12,15 +12,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
-public class PaintImage extends JPanel {
+public class PaintImage extends JPanel{
 	private Image image;
 	private double x;
 	private double y;
 	private double r;
 	private int fcount;
 	public PaintImage() throws IOException{
-		File input = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg");
+		File input = new File("C:\\Users\\Puya\\Desktop\\CANHacks\\usethis.jpg");
 		image = ImageIO.read(input);
 		image = scaleImage(image);
 	}
@@ -59,6 +58,4 @@ public class PaintImage extends JPanel {
 		g.fillRect(x, y, 20, 20);
 		//g.fillRect(y, x, 20,20);
 	}
-	
-
 }
