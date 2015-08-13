@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -19,7 +21,11 @@ public class PaintImage extends JPanel{
 	private double r;
 	private int fcount;
 	public PaintImage() throws IOException{
-		File input = new File("C:\\Users\\Puya\\Desktop\\CANHacks\\usethis.jpg");
+		URL path = PaintImage.class.getClass().getResource("/resources/ex1.jpg");
+		File input;	
+		
+		input = new File(path.getPath());
+		
 		image = ImageIO.read(input);
 		image = scaleImage(image);
 	}
