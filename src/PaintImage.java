@@ -20,8 +20,9 @@ public class PaintImage extends JPanel{
 	private double y;
 	private double r;
 	private int fcount;
+	private boolean defaultmode;
 	public PaintImage() throws IOException{
-		File input = new File("C:\\Users\\Puya\\Desktop\\CANHacks\\usethis.jpg");
+		File input = new File("E:\\eclipsewsj\\ObjectRecog\\src\\resources\\ex1.jpg");
 		
 		image = ImageIO.read(input);
 		image = scaleImage(image);
@@ -36,6 +37,11 @@ public class PaintImage extends JPanel{
 		 drawCrossHair(g2d,(int)x, (int)y);
 		 g2d.setFont(new Font("TimesRoman",Font.BOLD,70));
 		 g2d.drawString("Frame "+fcount, 100, 100);
+		 if(!defaultmode)
+		 {
+			 g2d.drawString("Slider Mode: Editable", 500, 100);
+		 }
+		 else g2d.drawString("Slider Mode: Not Editable", 500, 100);
 		 this.removeAll();
 		 repaint();
 	}
@@ -46,8 +52,9 @@ public class PaintImage extends JPanel{
 		return frame;	
 	}
 	
-	public void queueImage(Image k, double[] ary){
+	public void queueImage(Image k, double[] ary,boolean def){
 		image = k;
+		defaultmode = def;
 		x = Math.round((ary[0]*1920) / 640.0);
 		y = Math.round((ary[1] * 1080) / 480.0);;
 		r = ary[2] * 5;
