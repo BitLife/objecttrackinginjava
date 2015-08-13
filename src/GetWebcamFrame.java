@@ -40,7 +40,7 @@ public class GetWebcamFrame implements KeyListener{
 		int frameCount = 0;
 		new GetWebcamFrame(paint);
 		
-		/*VideoCapture cam = new VideoCapture(0);
+		VideoCapture cam = new VideoCapture(0);
 		cam.open(0);
 		Thread.sleep(1000);
 			while(cam.isOpened()){
@@ -52,17 +52,17 @@ public class GetWebcamFrame implements KeyListener{
 				Mat filtered = new Mat();
 				cam.read(regular);
 				HSV = filter.convertToHSV(regular);
-				filtered = filter.filterHSV(HSV);
+				filtered = filter.filterHSV(HSV, defaul);
 				Image scaledImg = scaleImage(toBufferedImage(filtered));
-				if(switchImage)
+				if(switchImage || defaul)
 					scaledImg = scaleImage(toBufferedImage(regular));
 				paint.queueImage(scaledImg, filter.findPts(filtered));
 				System.out.println("Frame "+frameCount);
 				paint.setfcount(frameCount);
 			}
 			cam.release();
-		} */
-		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
+		} 
+		/*File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
 		BufferedImage sampimg = ImageIO.read(sampf);
 		Mat sample = BufferedImagetoMat(sampimg);
 
@@ -83,7 +83,7 @@ public class GetWebcamFrame implements KeyListener{
 			System.out.println("Frame "+frameCount);
 			paint.setfcount(frameCount);
 		}
-	}
+	}*/
 	
 	public static Image scaleImage(Image frame){	 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -124,8 +124,7 @@ public class GetWebcamFrame implements KeyListener{
 		if(key == KeyEvent.VK_ENTER)
 			switchImage = !(switchImage);
 		if(key == KeyEvent.VK_SHIFT)
-			defaul = true;
-		System.out.println(switchImage);
+			defaul = !(defaul);
 	}
 
 	public void keyTyped(KeyEvent e) {
