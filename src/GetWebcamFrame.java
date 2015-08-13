@@ -17,10 +17,12 @@ import javax.swing.JFrame;
 public class GetWebcamFrame implements KeyListener{
 	private static final JFrame frame = new JFrame("CANHacks 2015");
 	private static boolean switchImage;
+	private static boolean defaul;
 	
 	public GetWebcamFrame(PaintImage paint) throws IOException{
 		ValueSlider run = new ValueSlider();
 		switchImage = false;
+		defaul = true;
 		frame.setContentPane(paint);
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
 		frame.setLocationRelativeTo(null);
@@ -38,7 +40,7 @@ public class GetWebcamFrame implements KeyListener{
 		int frameCount = 0;
 		new GetWebcamFrame(paint);
 		
-		VideoCapture cam = new VideoCapture(0);
+		/*VideoCapture cam = new VideoCapture(0);
 		cam.open(0);
 		Thread.sleep(1000);
 			while(cam.isOpened()){
@@ -59,8 +61,8 @@ public class GetWebcamFrame implements KeyListener{
 				paint.setfcount(frameCount);
 			}
 			cam.release();
-		}
-		/*File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
+		} */
+		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
 		BufferedImage sampimg = ImageIO.read(sampf);
 		Mat sample = BufferedImagetoMat(sampimg);
 
@@ -73,13 +75,15 @@ public class GetWebcamFrame implements KeyListener{
 			Mat filtered = new Mat();
 			regular = sample;
 			HSV = filter.convertToHSV(regular);
-			filtered = filter.filterHSV(HSV);
+			filtered = filter.filterHSV(HSV,defaul);
 			Image scaledImg = scaleImage(toBufferedImage(filtered));
+			if(switchImage)
+				scaledImg = scaleImage(toBufferedImage(regular));
 			paint.queueImage(scaledImg, filter.findPts(filtered));
 			System.out.println("Frame "+frameCount);
 			paint.setfcount(frameCount);
 		}
-	}*/
+	}
 	
 	public static Image scaleImage(Image frame){	 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -103,14 +107,14 @@ public class GetWebcamFrame implements KeyListener{
         return image;
     }
 	
-	/*public static Mat BufferedImagetoMat(BufferedImage buff)
+	public static Mat BufferedImagetoMat(BufferedImage buff)
 	{
 		byte[] sampimgpixels = ((DataBufferByte) buff.getRaster().getDataBuffer()).getData();
 		Mat sample = new Mat(buff.getHeight(),buff.getWidth(),CvType.CV_8UC3);
 		sample.put(0, 0, sampimgpixels);
 		
 		return sample;
-	}*/
+	}
 	
 	public void keyPressed(KeyEvent e) {
 	}
@@ -119,6 +123,8 @@ public class GetWebcamFrame implements KeyListener{
 		int key =  e.getKeyCode();
 		if(key == KeyEvent.VK_ENTER)
 			switchImage = !(switchImage);
+		if(key == KeyEvent.VK_SHIFT)
+			defaul = true;
 		System.out.println(switchImage);
 	}
 

@@ -17,7 +17,7 @@ public class FilterImages {
 		Imgproc.cvtColor(BGR, HSV, Imgproc.COLOR_RGB2HSV);
 		return HSV;
 	}
-	public Mat filterHSV(Mat frame) throws IOException{
+	public Mat filterHSV(Mat frame, boolean defaul) throws IOException{
 		SliderUIFrame slider = new SliderUIFrame();
 		Mat filter1 = new Mat();
 		Mat filter2 = new Mat();
@@ -26,13 +26,26 @@ public class FilterImages {
 		Mat finalImage = new Mat();
 		//Core.inRange(frame, new Scalar(97, 212, 94), new Scalar(164, 288, 212), filter1);
 		//Core.inRange(frame, new Scalar(86, 70, 102), new Scalar(129, 277,253), filter2);
-		Core.inRange(frame, new Scalar(slider.hminValue(), slider.sminValue(), slider.vminValue()), new Scalar(slider.hmaxValue(), slider.smaxValue(), slider.vmaxValue()), filter1);
+		
 		//Core.bitwise_and(filter1, filter2, combineFilters);
 		//Core.inRange(frame, new Scalar(51, 43, 126), new Scalar(126, 263, 258), filter1);
 		//Core.inRange(frame, new Scalar(81, 110, 156), new Scalar(121, 258, 234), filter2);
 		//Core.bitwise_and(filter1, filter2, combineFilters);
-		Imgproc.blur(filter1, smoothImage, new Size(10, 10));
-		Imgproc.threshold(smoothImage, finalImage, 150, 255, Imgproc.THRESH_BINARY);
+		
+		if(!defaul)
+		{
+			Core.inRange(frame, new Scalar(slider.hminValue(), slider.sminValue(), slider.vminValue()), new Scalar(slider.hmaxValue(), slider.smaxValue(), slider.vmaxValue()), filter1);
+			Imgproc.blur(filter1, smoothImage, new Size(10, 10));
+			Imgproc.threshold(smoothImage, finalImage, 150, 255, Imgproc.THRESH_BINARY);
+		}
+		else
+		{
+			Core.inRange(frame, new Scalar(102, 180, 191), new Scalar(113, 261, 277), filter1);
+			  Core.inRange(frame, new Scalar(99, 148, 148), new Scalar(118, 285, 261), filter2);
+			  Core.bitwise_and(filter1, filter2, combineFilters);
+			  Imgproc.blur(filter1, smoothImage, new Size(10, 10));
+			  Imgproc.threshold(smoothImage, finalImage, 150, 255, Imgproc.THRESH_BINARY);
+		}
 		/*System.out.println(slider.hminValue());
 		System.out.println(slider.hmaxValue());
 		System.out.println(slider.sminValue());
