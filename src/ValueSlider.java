@@ -1,4 +1,4 @@
-package SliderPackage;
+
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

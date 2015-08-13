@@ -5,6 +5,7 @@ import org.opencv.videoio.VideoCapture;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
@@ -17,8 +18,8 @@ public class GetWebcamFrame  {
 	private static final JFrame frame = new JFrame("CANHacks 2015");
 	
 	public static void main(String[] args) throws InterruptedException, IOException
-	{
-		//ValueSlider run = new ValueSlider();
+	{	
+		ValueSlider run = new ValueSlider();
 		int frameCount = 0;
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		PaintImage paint = new PaintImage();
@@ -50,13 +51,15 @@ public class GetWebcamFrame  {
 			cam.release();
 		}*/
 		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg");
+		
+		 
 		BufferedImage sampimg = ImageIO.read(sampf);
 		Mat sample = BufferedImagetoMat(sampimg);
 		
 		
 		while(true)
 		{
-			Thread.sleep(1000/60);
+			Thread.currentThread().sleep(500);
 			frameCount++;
 			Mat regular = new Mat();
 			Mat HSV = new Mat();
@@ -101,4 +104,8 @@ public class GetWebcamFrame  {
 		
 		return sample;
 	}
+
+
+
+
 }

@@ -5,13 +5,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class PaintImage extends JPanel{
+public class PaintImage extends JPanel {
 	private Image image;
 	private double x;
 	private double y;
@@ -29,6 +31,7 @@ public class PaintImage extends JPanel{
 		 g2d.drawImage(image, 0, 0, null);
 		 g2d.setColor(Color.GREEN);
 		 g2d.drawOval((int) (x-(r/2)), (int) (y-(r/2)), (int) r, (int) r);
+		 drawCrossHair(g2d,(int)x, (int)y);
 		 g2d.setFont(new Font("TimesRoman",Font.BOLD,70));
 		 g2d.drawString("Frame "+fcount, 100, 100);
 		 this.removeAll();
@@ -51,4 +54,11 @@ public class PaintImage extends JPanel{
 	{
 		fcount = i;
 	}
+	public void drawCrossHair(Graphics2D g,int  x, int y)
+	{
+		g.fillRect(x, y, 20, 20);
+		g.fillRect(y, x, 20,20);
+	}
+	
+
 }

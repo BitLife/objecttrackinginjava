@@ -18,7 +18,7 @@ public class FilterImages {
 		return HSV;
 	}
 	public Mat filterHSV(Mat frame) throws IOException{
-		//SliderUIFrame slider = new SliderUIFrame();
+		SliderUIFrame slider = new SliderUIFrame();
 		Mat filter1 = new Mat();
 		Mat filter2 = new Mat();
 		Mat combineFilters = new Mat();
