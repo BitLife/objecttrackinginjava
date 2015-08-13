@@ -9,7 +9,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-//import SliderPackage.SliderUIFrame;
+
 
 public class FilterImages {
 	public Mat convertToHSV(Mat BGR){
@@ -26,12 +26,12 @@ public class FilterImages {
 		Mat finalImage = new Mat();
 		//Core.inRange(frame, new Scalar(97, 212, 94), new Scalar(164, 288, 212), filter1);
 		//Core.inRange(frame, new Scalar(86, 70, 102), new Scalar(129, 277,253), filter2);
-		//Core.inRange(frame, new Scalar(slider.hminValue(), slider.sminValue(), slider.vminValue()), new Scalar(slider.hmaxValue(), slider.smaxValue(), slider.vmaxValue()), filter1);
+		Core.inRange(frame, new Scalar(slider.hminValue(), slider.sminValue(), slider.vminValue()), new Scalar(slider.hmaxValue(), slider.smaxValue(), slider.vmaxValue()), filter1);
 		//Core.bitwise_and(filter1, filter2, combineFilters);
-		Core.inRange(frame, new Scalar(51, 43, 126), new Scalar(126, 263, 258), filter1);
-		Core.inRange(frame, new Scalar(81, 110, 156), new Scalar(121, 258, 234), filter2);
-		Core.bitwise_and(filter1, filter2, combineFilters);
-		Imgproc.blur(filter2, smoothImage, new Size(10, 10));
+		//Core.inRange(frame, new Scalar(51, 43, 126), new Scalar(126, 263, 258), filter1);
+		//Core.inRange(frame, new Scalar(81, 110, 156), new Scalar(121, 258, 234), filter2);
+		//Core.bitwise_and(filter1, filter2, combineFilters);
+		Imgproc.blur(filter1, smoothImage, new Size(10, 10));
 		Imgproc.threshold(smoothImage, finalImage, 150, 255, Imgproc.THRESH_BINARY);
 		/*System.out.println(slider.hminValue());
 		System.out.println(slider.hmaxValue());

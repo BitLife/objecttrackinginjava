@@ -57,7 +57,7 @@ public class PaintImage extends JPanel {
 	public void drawCrossHair(Graphics2D g,int  x, int y)
 	{
 		g.fillRect(x, y, 20, 20);
-		g.fillRect(y, x, 20,20);
+		//g.fillRect(y, x, 20,20);
 	}
 	
 

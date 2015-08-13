@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.opencv.core.Mat;
+
 public class SliderUIFrame extends JFrame{
 	
 	private static int hminvalue;
@@ -27,6 +29,7 @@ public class SliderUIFrame extends JFrame{
 	private JPanel sliderPanel;
 	private JTextField textField;
 	private ChangeListener listener;
+	private Mat hsvselected;
 	
 	public SliderUIFrame(){
 		setTitle("HSV Value Slider");

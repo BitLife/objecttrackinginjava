@@ -43,20 +43,17 @@ public class GetWebcamFrame  {
 				cam.read(regular);
 				HSV = filter.convertToHSV(regular);
 				filtered = filter.filterHSV(HSV);
-				Image scaledImg = scaleImage(toBufferedImage(regular));
+				Image scaledImg = scaleImage(toBufferedImage(filtered));
 				paint.queueImage(scaledImg, filter.findPts(filtered));
 				System.out.println("Frame "+frameCount);
 				paint.setfcount(frameCount);
 			}
 			cam.release();
 		}*/
-		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg");
-		
-		 
+		File sampf = new File("E:\\eclipsewsj\\ObjectRecog\\penisball.jpg"); 
 		BufferedImage sampimg = ImageIO.read(sampf);
 		Mat sample = BufferedImagetoMat(sampimg);
-		
-		
+
 		while(true)
 		{
 			Thread.currentThread().sleep(500);
@@ -67,7 +64,7 @@ public class GetWebcamFrame  {
 			regular = sample;
 			HSV = filter.convertToHSV(regular);
 			filtered = filter.filterHSV(HSV);
-			Image scaledImg = scaleImage(toBufferedImage(regular));
+			Image scaledImg = scaleImage(toBufferedImage(filtered));
 			paint.queueImage(scaledImg, filter.findPts(filtered));
 			System.out.println("Frame "+frameCount);
 			paint.setfcount(frameCount);
