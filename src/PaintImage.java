@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -55,8 +56,8 @@ public class PaintImage extends JPanel{
 	public void queueImage(Image k, double[] ary,boolean def){
 		image = k;
 		defaultmode = def;
-		x = Math.round((ary[0]*1920) / 640.0);
-		y = Math.round((ary[1] * 1080) / 480.0);;
+		x = Math.round((ary[0]*2560) / 640.0);
+		y = Math.round((ary[1] * 1440) / 480.0);;
 		r = ary[2] * 5;
 	}
 	public void setfcount(int i)
@@ -64,7 +65,7 @@ public class PaintImage extends JPanel{
 		fcount = i;
 	}
 	public void drawCrossHair(Graphics2D g,int  x, int y)
-	{
+	{	g.setStroke(new BasicStroke(10));
 		g.fillRect(x, y, 20, 20);
 		//g.fillRect(y, x, 20,20);
 	}
