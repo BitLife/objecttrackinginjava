@@ -19,7 +19,7 @@ public class PaintImage extends JPanel{
 	private int fcount;
 	private boolean defaultmode;
 	public PaintImage() throws IOException{
-		File input = new File("C:\\Users\\Puya\\Desktop\\CANHacks\\usethis.jpg"); //E:\\eclipsewsj\\ObjectRecog\\src\\resources\\ex1.jpg
+		File input = new File(/*"C:\\Users\\Puya\\Desktop\\CANHacks\\usethis.jpg"*/ "E:\\eclipsewsj\\ObjectRecog\\src\\resources\\ex1.jpg" );
 		
 		image = ImageIO.read(input);
 		image = scaleImage(image);

@@ -1,15 +1,20 @@
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.IOException;
+
+import javax.swing.JFrame;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
 
-public class GrabFrames extends Thread{
+public class GrabFrames extends Thread implements KeyListener {
 	
 	private int frameCount;
 	private static Mat HSV;
@@ -23,8 +28,8 @@ public class GrabFrames extends Thread{
 	private static	int type;
 	private static Dimension dim;
 	private static VideoCapture cam;
-	
-	public GrabFrames(boolean switchImage, boolean defaul, PaintImage paint) throws IOException{
+	private static JFrame frame;
+	public GrabFrames(boolean switchImage, boolean defaul, PaintImage paint, JFrame Fram) throws IOException{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		cam = new VideoCapture(0);
 		filter = new FilterImages();
@@ -34,6 +39,14 @@ public class GrabFrames extends Thread{
 		HSV = new Mat();
 		regular = new Mat();
 		filtered = new Mat();
+		frame = new JFrame();
+		frame.setContentPane(paint);
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+		frame.setLocationRelativeTo(null);
+		frame.addKeyListener(this);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		new ValueSlider();
 		
 	}
 	
@@ -91,5 +104,21 @@ public class GrabFrames extends Thread{
 		dim = Toolkit.getDefaultToolkit().getScreenSize();
 	 	frame = frame.getScaledInstance(dim.width, dim.height, Image.SCALE_REPLICATE);
 		return frame;	
+	}
+	
+	public void keyPressed(KeyEvent e) {
+	}
+
+	public void keyReleased(KeyEvent e) {
+		int key =  e.getKeyCode();
+		if(key == KeyEvent.VK_ENTER)
+			switchImage = !(switchImage);
+		if(key == KeyEvent.VK_SHIFT)
+			defaul = !(defaul);
+		if(key == KeyEvent.VK_ESCAPE)
+			System.exit(0);
+	}
+
+	public void keyTyped(KeyEvent e) {
 	}
 }
