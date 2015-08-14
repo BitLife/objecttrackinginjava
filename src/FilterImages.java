@@ -40,18 +40,16 @@ public class FilterImages {
 		}
 		else
 		{
-			Core.inRange(frame, new Scalar(102, 180, 191), new Scalar(113, 261, 277), filter1);
-			  Core.inRange(frame, new Scalar(99, 148, 148), new Scalar(118, 285, 261), filter2);
-			  Core.bitwise_and(filter1, filter2, combineFilters);
-			  Imgproc.blur(filter1, smoothImage, new Size(10, 10));
-			  Imgproc.threshold(smoothImage, finalImage, 150, 255, Imgproc.THRESH_BINARY);
+			Core.inRange(frame, new Scalar(97, 126, 129), new Scalar(185, 218, 237), filter1);
+			Imgproc.blur(filter1, smoothImage, new Size(10, 10));
+			Imgproc.threshold(smoothImage, finalImage, 150, 255, Imgproc.THRESH_BINARY);
 		}
-		/*System.out.println(slider.hminValue());
+		System.out.println(slider.hminValue());
 		System.out.println(slider.hmaxValue());
 		System.out.println(slider.sminValue());
 		System.out.println(slider.smaxValue());
 		System.out.println(slider.vminValue());
-		System.out.println(slider.vmaxValue());*/
+		System.out.println(slider.vmaxValue());
 		return finalImage;
 	}
 	

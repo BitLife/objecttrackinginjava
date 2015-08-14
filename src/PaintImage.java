@@ -6,12 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -23,13 +19,18 @@ public class PaintImage extends JPanel{
 	private int fcount;
 	private boolean defaultmode;
 	public PaintImage() throws IOException{
-		File input = new File("E:\\eclipsewsj\\ObjectRecog\\src\\resources\\ex1.jpg");
+		File input = new File("C:\\Users\\Puya\\Desktop\\CANHacks\\usethis.jpg"); //E:\\eclipsewsj\\ObjectRecog\\src\\resources\\ex1.jpg
 		
 		image = ImageIO.read(input);
 		image = scaleImage(image);
 	}
 	
 	public void paint(Graphics g){
+		try {
+			Thread.sleep(1000/10);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		 Graphics2D g2d = (Graphics2D)g;
 		 image = scaleImage(image);
 		 g2d.drawImage(image, 0, 0, null);
