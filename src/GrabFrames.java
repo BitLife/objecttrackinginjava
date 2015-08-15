@@ -29,6 +29,7 @@ public class GrabFrames extends Thread implements KeyListener {
 	private static Dimension dim;
 	private static VideoCapture cam;
 	private static JFrame frame;
+	
 	public GrabFrames(boolean switchImage, boolean defaul, PaintImage paint, JFrame Fram) throws IOException{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		cam = new VideoCapture(0);
@@ -39,6 +40,7 @@ public class GrabFrames extends Thread implements KeyListener {
 		HSV = new Mat();
 		regular = new Mat();
 		filtered = new Mat();
+		
 		frame = new JFrame();
 		frame.setContentPane(paint);
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
@@ -46,6 +48,7 @@ public class GrabFrames extends Thread implements KeyListener {
 		frame.addKeyListener(this);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		new ValueSlider();
 		
 	}
@@ -55,14 +58,14 @@ public class GrabFrames extends Thread implements KeyListener {
 		
 		cam.open(0);
 		try {
-			Thread.sleep(1000);
+			sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 			while(cam.isOpened()){
 				System.out.println(switchImage);
 				try {
-					Thread.sleep(1000/10);
+					sleep(1000/10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

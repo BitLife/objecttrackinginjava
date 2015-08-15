@@ -29,8 +29,8 @@ public class SliderUIFrame extends JFrame{
 	private JPanel sliderPanel;
 	private JTextField textField;
 	private ChangeListener listener;
-	private Mat hsvselected;
-	
+	//private Mat hsvselected;
+
 	public SliderUIFrame(){
 		setTitle("HSV Value Slider");
 		setSize(350, 450);
@@ -53,6 +53,12 @@ public class SliderUIFrame extends JFrame{
 		hmin.setMinorTickSpacing(20);
 		hmin.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(hmin.getValueIsAdjusting())
 					hminvalue = (hmin.getValue());
 			}
@@ -67,6 +73,12 @@ public class SliderUIFrame extends JFrame{
 		hmax.setMinorTickSpacing(20);
 		hmax.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(hmax.getValueIsAdjusting())
 					hmaxvalue = hmax.getValue();
 			}
@@ -81,6 +93,12 @@ public class SliderUIFrame extends JFrame{
 		smin.setMinorTickSpacing(20);
 		smin.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(smin.getValueIsAdjusting())
 					sminvalue = smin.getValue();
 			}
@@ -95,6 +113,12 @@ public class SliderUIFrame extends JFrame{
 		smax.setMinorTickSpacing(20);
 		smax.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(smax.getValueIsAdjusting())
 					smaxvalue = smax.getValue();
 			}
@@ -109,6 +133,12 @@ public class SliderUIFrame extends JFrame{
 		vmin.setMinorTickSpacing(20);
 		vmin.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(vmin.getValueIsAdjusting())
 					vminvalue = vmin.getValue();
 			}
@@ -123,6 +153,12 @@ public class SliderUIFrame extends JFrame{
 		vmax.setMinorTickSpacing(20);
 		vmax.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(vmax.getValueIsAdjusting())
 					vmaxvalue = vmax.getValue();
 			}
@@ -139,7 +175,7 @@ public class SliderUIFrame extends JFrame{
 		JPanel panel = new JPanel();
 		panel.add(s);
 		panel.add(new JLabel(name));
-		sliderPanel.add(panel);
+		sliderPanel.add(panel.add(s));
 	}
 	
 	public int hminValue(){

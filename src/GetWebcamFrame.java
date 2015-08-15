@@ -25,9 +25,5 @@ public class GetWebcamFrame{
 		sample.put(0, 0, sampimgpixels);
 		
 		return sample;
-	}*/
-	
-	
-	
-	
+	}*/	
 }
