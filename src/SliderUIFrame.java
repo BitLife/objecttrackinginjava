@@ -1,5 +1,3 @@
-
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
@@ -9,7 +7,6 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import org.opencv.core.Mat;
 
 public class SliderUIFrame extends JFrame{
@@ -32,6 +29,7 @@ public class SliderUIFrame extends JFrame{
 	//private Mat hsvselected;
 
 	public SliderUIFrame(){
+		//System.out.println("we made to many");
 		setTitle("HSV Value Slider");
 		setSize(350, 450);
 		
@@ -47,7 +45,7 @@ public class SliderUIFrame extends JFrame{
 		
 		hmin = new JSlider();
 		hmin.setMaximum(500);
-		hmin.setValue(0);
+		hmin.setValue(97);
 		hmin.setPaintTicks(true);
 		hmin.setMajorTickSpacing(100);
 		hmin.setMinorTickSpacing(20);
@@ -67,7 +65,7 @@ public class SliderUIFrame extends JFrame{
 		
 		hmax = new JSlider();
 		hmax.setMaximum(500);
-		hmax.setValue(500);
+		hmax.setValue(185);
 		hmax.setPaintTicks(true);
 		hmax.setMajorTickSpacing(100);
 		hmax.setMinorTickSpacing(20);
@@ -87,7 +85,7 @@ public class SliderUIFrame extends JFrame{
 		
 		smin = new JSlider();
 		smin.setMaximum(500);
-		smin.setValue(0);
+		smin.setValue(126);
 		smin.setPaintTicks(true);
 		smin.setMajorTickSpacing(100);
 		smin.setMinorTickSpacing(20);
@@ -107,7 +105,7 @@ public class SliderUIFrame extends JFrame{
 		
 		smax = new JSlider();
 		smax.setMaximum(500);
-		smax.setValue(500);
+		smax.setValue(218);
 		smax.setPaintTicks(true);
 		smax.setMajorTickSpacing(100);
 		smax.setMinorTickSpacing(20);
@@ -127,7 +125,7 @@ public class SliderUIFrame extends JFrame{
 		
 		vmin = new JSlider();
 		vmin.setMaximum(500);
-		vmin.setValue(0);
+		vmin.setValue(129);
 		vmin.setPaintTicks(true);
 		vmin.setMajorTickSpacing(100);
 		vmin.setMinorTickSpacing(20);
@@ -147,7 +145,7 @@ public class SliderUIFrame extends JFrame{
 		
 		vmax = new JSlider();
 		vmax.setMaximum(500);
-		vmax.setValue(500);
+		vmax.setValue(237);
 		vmax.setPaintTicks(true);
 		vmax.setMajorTickSpacing(100);
 		vmax.setMinorTickSpacing(20);
@@ -156,7 +154,6 @@ public class SliderUIFrame extends JFrame{
 				try {
 					Thread.sleep(1000/60);
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				if(vmax.getValueIsAdjusting())
