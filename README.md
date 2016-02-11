@@ -1,9 +1,7 @@
-#Object Tracking using opencv in java
-You must install opencv and use it's java librairy in your buildpath. Put the opencv dll for java in the system32 folder on windows.
 
-Object Tracking in Java
+#Object Tracking in Java
 ====================
-In order to use this code you must properly install the Open Computer Vision Library for Java on your system.
+In order to use this code you must properly install the Open Computer Vision Library for Java on your system. 
 
 
 This package was built at a hackathon, and aims to track the center of certain colored objects on screen.  The program is best used while adjusting the slider, which can change the Hue, Saturation and Value variables for the image filter. There are two modes. The default mode is configured for bright orange in a well lit room. It is currently recomended that you configure the slider to your location's lighting. This program works best with sphere or round shape objects. It connects to the default webcam of your system.
