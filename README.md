@@ -10,5 +10,5 @@ This package was built at a hackathon, and aims to track the center of certain c
 * The SHIFT key can be used to switch views of the webcam with the object circled in green and a filtered view of the current object for value adjusting.
 * Bright objects work best, with lots of light.
 * To exit close the window or hit the escape key.
-* During operation press ENTER at the console to seek a match from hands.txt and to seek a match from numberHands.txt briefly but calmly place your left hand in the field of view.
+
 
