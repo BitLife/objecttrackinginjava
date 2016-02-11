@@ -61,7 +61,7 @@ public class GrabFrames extends Thread implements KeyListener {
 		}
 			while(cam.isOpened()){
 				try {
-					sleep(1000/60);
+					sleep(1000/20);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -81,7 +81,7 @@ public class GrabFrames extends Thread implements KeyListener {
 				paint.queueImage(scaledImg, filter.findPts(filtered), defaul);
 				//System.out.println("Frame "+frameCount);
 				paint.setfcount(frameCount);
-				if(frameCount % 50 == 0)
+				if(frameCount % 5 == 0)
 					System.gc();
 			}
 			cam.release();
